@@ -10235,10 +10235,10 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\malicata\\documents\\visual studio 2017\\Projects\\CityInfo\\CityInfo.API\\CityInfo.API.csproj",
+      "projectUniqueName": "C:\\Users\\malicata\\Documents\\Visual Studio 2017\\Projects\\CityInfo\\CityInfo.API\\CityInfo.API.csproj",
       "projectName": "CityInfo.API",
-      "projectPath": "C:\\Users\\malicata\\documents\\visual studio 2017\\Projects\\CityInfo\\CityInfo.API\\CityInfo.API.csproj",
-      "outputPath": "C:\\Users\\malicata\\documents\\visual studio 2017\\Projects\\CityInfo\\CityInfo.API\\obj\\",
+      "projectPath": "C:\\Users\\malicata\\Documents\\Visual Studio 2017\\Projects\\CityInfo\\CityInfo.API\\CityInfo.API.csproj",
+      "outputPath": "C:\\Users\\malicata\\Documents\\Visual Studio 2017\\Projects\\CityInfo\\CityInfo.API\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netcoreapp1.0"

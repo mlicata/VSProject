@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using CityInfo.API.Models;
 
 namespace CityInfo.API
 {
-    public class POICreationDto
+    public class POICreationDto : POIDto
     {
         [Required(ErrorMessage = "A 'Name' is required")]
         [MaxLength(50, ErrorMessage = "Your 'Name' is too long, max length is 200 characters.")]

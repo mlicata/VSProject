@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using CityInfo.API.Models;
+﻿using CityInfo.API.Models;
 using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Linq;
 
 namespace CityInfo.API.Controllers
 {
@@ -24,12 +22,11 @@ namespace CityInfo.API.Controllers
         {
             try
             {
-                var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+                CityDto city = new CityDto();
+                city = getCityDto(cityId);
+
                 if (city == null)
-                {
-                    _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.");
                     return NotFound();
-                }
 
                 return Ok(city.PointsOfInterest);
             }
@@ -47,19 +44,16 @@ namespace CityInfo.API.Controllers
             try
             {
                 CityDto city = new CityDto();
-                city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
-                if (city == null)
-                {
-                    _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.");
-                    return NotFound();
-                }
+                city = getCityDto(cityId);
 
-                var poi = city.PointsOfInterest.FirstOrDefault(p => p.Id == poiId);
-                if (poi == null)
-                {
-                    _logger.LogInformation($"POI with id {cityId} wasn't found when accessing points of interest.");
+                if(city == null)
                     return NotFound();
-                }
+                
+                POIDto poi = new POIDto();
+                poi = getPOIDto(city, poiId);
+
+                if(poi == null)
+                    return NotFound();
 
                 return Ok(poi);
             }
@@ -74,17 +68,8 @@ namespace CityInfo.API.Controllers
         public IActionResult CreatePOI(int cityId, [FromBody] POICreationDto poi)
         {
             try{
-                if (poi == null)
-                {
-                    _logger.LogInformation($"Cannot create POI. The POI details provided were invalid.");
-                    return BadRequest();
-                }
-
-                if (poi.Name == poi.Desc)
-                {
-                    _logger.LogInformation($"Cannot create new POI for CityId: {cityId}. The Name and Description are identical.");
-                    ModelState.AddModelError("Description", "The Name and Description must be different.");
-                }
+                if (!poiCheck(poi))
+                    BadRequest();
 
                 if (!ModelState.IsValid)
                 {
@@ -94,12 +79,10 @@ namespace CityInfo.API.Controllers
 
 
                 CityDto city = new CityDto();
-                city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+                city = getCityDto(cityId);
+
                 if (city == null)
-                {
-                    _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.");
                     return NotFound();
-                }
 
                 var maxPOI = CitiesDataStore.Current.Cities.SelectMany(c => c.PointsOfInterest).Max(p => p.Id);
                 POIDto finalPOI = new POIDto()
@@ -111,7 +94,6 @@ namespace CityInfo.API.Controllers
                 city.PointsOfInterest.Add(finalPOI);
 
                 return NoContent();
-                //return CreatedAtRoute("GetPOI", finalPOI);
             }
             catch (Exception ex)
             {
@@ -125,17 +107,8 @@ namespace CityInfo.API.Controllers
         {
             try
             {
-                if (poi == null)
-                {
-                    _logger.LogInformation($"Cannot update PoiId: {poiId}. The POI details provided were invalid.");
-                    return BadRequest();
-                }
-
-                if (poi.Name == poi.Desc)
-                {
-                    _logger.LogInformation($"Cannot update CityId: {cityId} and PoiID: {poiId}. The Name and Description are identical.");
-                    ModelState.AddModelError("Description", "The Name and Description must be different.");
-                }
+                if (!poiCheck(poi))
+                    BadRequest();
 
                 if (!ModelState.IsValid)
                 {
@@ -143,23 +116,17 @@ namespace CityInfo.API.Controllers
                     return BadRequest(ModelState);
                 }
 
-
                 CityDto city = new CityDto();
-                city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+                city = getCityDto(cityId);
+
                 if (city == null)
-                {
-                    _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.");
                     return NotFound();
-                }
 
                 POIDto updatePoi = new POIDto();
-                updatePoi = city.PointsOfInterest.FirstOrDefault(p => p.Id == poiId);
+                updatePoi = getPOIDto(city, poiId);
 
-                if (updatePoi == null)
-                {
-                    _logger.LogInformation($"POI with id {poiId} wasn't found when accessing points of interest.");
+                if (poi == null)
                     return NotFound();
-                }
 
                 updatePoi.Name = poi.Name;
                 updatePoi.Desc = poi.Desc;
@@ -185,21 +152,16 @@ namespace CityInfo.API.Controllers
                 }
 
                 CityDto city = new CityDto();
-                city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+                city = getCityDto(cityId);
+
                 if (city == null)
-                {
-                    _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.");
                     return NotFound();
-                }
 
                 POIDto storedPoi = new POIDto();
-                storedPoi = city.PointsOfInterest.FirstOrDefault(p => p.Id == poiId);
+                storedPoi = getPOIDto(city, poiId);
 
                 if (storedPoi == null)
-                {
-                    _logger.LogInformation($"POI with id {poiId} wasn't found when accessing points of interest.");
                     return NotFound();
-                }
 
                 POIUpdateDto patchPoi = new POIUpdateDto()
                 {
@@ -208,16 +170,13 @@ namespace CityInfo.API.Controllers
                 };
                 patchDoc.ApplyTo(patchPoi, ModelState);
 
+                if (!poiCheck(patchPoi))
+                    BadRequest();
+
                 if (!ModelState.IsValid)
                 {
                     _logger.LogInformation($"Cannot partially update POI. The Model was invalid");
                     return BadRequest(ModelState);
-                }
-
-                if (patchPoi.Name == patchPoi.Desc)
-                {
-                    _logger.LogInformation($"Cannot update CityId: {cityId} and PoiID: {poiId}. The Name and Description are identical.");
-                    ModelState.AddModelError("Description", "The Name and Description must be different.");
                 }
 
                 TryValidateModel(patchPoi);
@@ -245,21 +204,16 @@ namespace CityInfo.API.Controllers
             try
             {
                 CityDto city = new CityDto();
-                city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+                city = getCityDto(cityId);
+
                 if (city == null)
-                {
-                    _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.");
                     return NotFound();
-                }
 
                 POIDto storedPoi = new POIDto();
-                storedPoi = city.PointsOfInterest.FirstOrDefault(p => p.Id == poiId);
+                storedPoi = getPOIDto(city, poiId);
 
                 if (storedPoi == null)
-                {
-                    _logger.LogInformation($"POI with id {poiId} wasn't found when accessing points of interest.");
                     return NotFound();
-                }
 
                 city.PointsOfInterest.Remove(storedPoi);
 
@@ -270,6 +224,45 @@ namespace CityInfo.API.Controllers
                 _logger.LogCritical($"Exception while trying to delete PoiId: {poiId} for CityID: {cityId}");
                 return StatusCode(500, $"A problem happened while trying to delete PoiId: {poiId} for CityID: {cityId}");
             }
+        }
+
+        private CityDto getCityDto(int cityId)
+        {
+            CityDto tempDto = new CityDto();
+            tempDto = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+            if (tempDto == null)
+            {
+                _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.");
+            }
+            return tempDto;
+        }
+
+        private POIDto getPOIDto(CityDto city, int poiId)
+        {
+            POIDto tempDto = new POIDto();
+            tempDto = city.PointsOfInterest.FirstOrDefault(p => p.Id == poiId);
+            if (tempDto == null)
+            {
+                _logger.LogInformation($"POI with id {poiId} wasn't found when accessing points of interest.");
+            }
+            return tempDto;
+        }
+
+        private bool poiCheck(POIDto poi)
+        {
+            if (poi == null)
+            {
+                _logger.LogInformation($"Cannot create temp POI. The POI details provided were invalid.");
+                return false;
+            }
+
+            if (poi.Name != null && poi.Desc != null && poi.Name == poi.Desc)
+            {
+                _logger.LogInformation($"Cannot create POI. The Name and Description are identical.");
+                ModelState.AddModelError("Description", "The Name and Description must be different.");
+                return false;
+            }
+            return true;
         }
     }
 }
