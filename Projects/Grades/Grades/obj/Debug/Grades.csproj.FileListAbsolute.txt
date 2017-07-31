@@ -1,0 +1,6 @@
+c:\users\malicata\documents\visual studio 2017\Projects\Grades\Grades\bin\Debug\Grades.exe.config
+c:\users\malicata\documents\visual studio 2017\Projects\Grades\Grades\bin\Debug\Grades.exe
+c:\users\malicata\documents\visual studio 2017\Projects\Grades\Grades\bin\Debug\Grades.pdb
+c:\users\malicata\documents\visual studio 2017\Projects\Grades\Grades\obj\Debug\Grades.csprojResolveAssemblyReference.cache
+c:\users\malicata\documents\visual studio 2017\Projects\Grades\Grades\obj\Debug\Grades.exe
+c:\users\malicata\documents\visual studio 2017\Projects\Grades\Grades\obj\Debug\Grades.pdb

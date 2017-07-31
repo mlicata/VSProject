@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  cityinfo.api:
+    image: cityinfo.api
+    build:
+      context: ./CityInfo.API
+      dockerfile: Dockerfile

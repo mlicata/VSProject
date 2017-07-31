@@ -1,0 +1,10 @@
+C:\Users\malicata\Documents\Visual Studio 2017\Projects\CityInfo\CityInfo.API\bin\Debug\netcoreapp1.0\CityInfo.API.deps.json
+C:\Users\malicata\Documents\Visual Studio 2017\Projects\CityInfo\CityInfo.API\bin\Debug\netcoreapp1.0\CityInfo.API.runtimeconfig.json
+C:\Users\malicata\Documents\Visual Studio 2017\Projects\CityInfo\CityInfo.API\bin\Debug\netcoreapp1.0\CityInfo.API.runtimeconfig.dev.json
+C:\Users\malicata\Documents\Visual Studio 2017\Projects\CityInfo\CityInfo.API\obj\Debug\netcoreapp1.0\CityInfo.API.csprojResolveAssemblyReference.cache
+C:\Users\malicata\Documents\Visual Studio 2017\Projects\CityInfo\CityInfo.API\obj\Debug\netcoreapp1.0\CityInfo.API.AssemblyInfo.cs
+C:\Users\malicata\Documents\Visual Studio 2017\Projects\CityInfo\CityInfo.API\bin\Debug\netcoreapp1.0\CityInfo.API.dll
+C:\Users\malicata\Documents\Visual Studio 2017\Projects\CityInfo\CityInfo.API\bin\Debug\netcoreapp1.0\CityInfo.API.pdb
+C:\Users\malicata\Documents\Visual Studio 2017\Projects\CityInfo\CityInfo.API\bin\Debug\netcoreapp1.0\System.Web.Mvc.dll
+C:\Users\malicata\Documents\Visual Studio 2017\Projects\CityInfo\CityInfo.API\obj\Debug\netcoreapp1.0\CityInfo.API.dll
+C:\Users\malicata\Documents\Visual Studio 2017\Projects\CityInfo\CityInfo.API\obj\Debug\netcoreapp1.0\CityInfo.API.pdb

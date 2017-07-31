@@ -1,0 +1,7 @@
+c:\users\malicata\documents\visual studio 2017\Projects\ConsoleApp1\ConsoleApp1\obj\Debug\DayOfWeekCalc.csprojResolveAssemblyReference.cache
+c:\users\malicata\documents\visual studio 2017\Projects\ConsoleApp1\ConsoleApp1\obj\Debug\DayOfWeekCalc.csproj.ResolveComReference.cache
+c:\users\malicata\documents\visual studio 2017\Projects\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.exe.config
+c:\users\malicata\documents\visual studio 2017\Projects\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.exe
+c:\users\malicata\documents\visual studio 2017\Projects\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.pdb
+c:\users\malicata\documents\visual studio 2017\Projects\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.exe
+c:\users\malicata\documents\visual studio 2017\Projects\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.pdb

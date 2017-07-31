@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 2\Assemblies\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

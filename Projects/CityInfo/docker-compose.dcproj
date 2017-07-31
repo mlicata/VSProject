@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" Sdk="Microsoft.Docker.Sdk">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>b19f52af-4622-4d64-8356-90cc8063d30a</ProjectGuid>
+    <DockerLaunchBrowser>True</DockerLaunchBrowser>
+    <DockerServiceUrl>http://localhost:{ServicePort}</DockerServiceUrl>
+    <DockerServiceName>cityinfo.api</DockerServiceName>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="docker-compose.ci.build.yml" />
+    <None Include="docker-compose.override.yml">
+      <DependentUpon>docker-compose.yml</DependentUpon>
+    </None>
+    <None Include="docker-compose.vs.debug.yml">
+      <DependentUpon>docker-compose.yml</DependentUpon>
+    </None>
+    <None Include="docker-compose.vs.release.yml">
+      <DependentUpon>docker-compose.yml</DependentUpon>
+    </None>
+    <None Include="docker-compose.yml" />
+  </ItemGroup>
+</Project>

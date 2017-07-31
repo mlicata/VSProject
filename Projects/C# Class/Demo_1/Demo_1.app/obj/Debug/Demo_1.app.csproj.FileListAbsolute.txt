@@ -1,0 +1,6 @@
+C:\Users\malicata\Documents\Visual Studio 2017\Projects\C# Class\Demo_1\Demo_1.app\obj\Debug\Demo_1.app.csprojResolveAssemblyReference.cache
+C:\Users\malicata\Documents\Visual Studio 2017\Projects\C# Class\Demo_1\Demo_1.app\bin\Debug\Demo_1.app.exe.config
+C:\Users\malicata\Documents\Visual Studio 2017\Projects\C# Class\Demo_1\Demo_1.app\bin\Debug\Demo_1.app.exe
+C:\Users\malicata\Documents\Visual Studio 2017\Projects\C# Class\Demo_1\Demo_1.app\bin\Debug\Demo_1.app.pdb
+C:\Users\malicata\Documents\Visual Studio 2017\Projects\C# Class\Demo_1\Demo_1.app\obj\Debug\Demo_1.app.exe
+C:\Users\malicata\Documents\Visual Studio 2017\Projects\C# Class\Demo_1\Demo_1.app\obj\Debug\Demo_1.app.pdb

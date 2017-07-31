@@ -1,0 +1,6 @@
+c:\users\malicata\documents\visual studio 2017\Projects\FoodEquals\FoodEquals.app\bin\Debug\FoodEquals.app.exe.config
+c:\users\malicata\documents\visual studio 2017\Projects\FoodEquals\FoodEquals.app\bin\Debug\FoodEquals.app.exe
+c:\users\malicata\documents\visual studio 2017\Projects\FoodEquals\FoodEquals.app\bin\Debug\FoodEquals.app.pdb
+c:\users\malicata\documents\visual studio 2017\Projects\FoodEquals\FoodEquals.app\obj\Debug\FoodEquals.app.csprojResolveAssemblyReference.cache
+c:\users\malicata\documents\visual studio 2017\Projects\FoodEquals\FoodEquals.app\obj\Debug\FoodEquals.app.exe
+c:\users\malicata\documents\visual studio 2017\Projects\FoodEquals\FoodEquals.app\obj\Debug\FoodEquals.app.pdb
