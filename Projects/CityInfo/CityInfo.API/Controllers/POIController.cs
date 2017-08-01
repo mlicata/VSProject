@@ -1,4 +1,5 @@
 ﻿using CityInfo.API.Models;
+using CityInfo.API.Services;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -10,11 +11,14 @@ namespace CityInfo.API.Controllers
     [Route("api/cities/")]
     public class POIController : Controller
     {
+        private ICityInfoRepository _cityInfoRepository;
+
         private ILogger<POIController> _logger;
 
-        public POIController(ILogger<POIController> logger)
+        public POIController(ILogger<POIController> logger, ICityInfoRepository cityInfoRepository)
         {
             _logger = logger;
+            _cityInfoRepository = cityInfoRepository;
         }
 
         [HttpGet("{cityId}/pois")]
@@ -22,13 +26,12 @@ namespace CityInfo.API.Controllers
         {
             try
             {
-                CityDto city = new CityDto();
-                city = getCityDto(cityId);
-
-                if (city == null)
+                var pois = _cityInfoRepository.GetPOIs(cityId);
+                if (pois == null)
+                {
                     return NotFound();
-
-                return Ok(city.PointsOfInterest);
+                }
+                return Ok(pois);
             }
             catch (Exception ex)
             {
@@ -43,18 +46,11 @@ namespace CityInfo.API.Controllers
         {
             try
             {
-                CityDto city = new CityDto();
-                city = getCityDto(cityId);
-
-                if(city == null)
+                var poi = _cityInfoRepository.GetPOI(cityId, poiId);
+                if (poi == null)
+                {
                     return NotFound();
-                
-                POIDto poi = new POIDto();
-                poi = getPOIDto(city, poiId);
-
-                if(poi == null)
-                    return NotFound();
-
+                }
                 return Ok(poi);
             }
             catch (Exception ex)

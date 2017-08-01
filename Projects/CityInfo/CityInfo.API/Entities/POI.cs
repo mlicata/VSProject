@@ -20,5 +20,8 @@ namespace CityInfo.API.Entities
         [Required]
         [MaxLength(50, ErrorMessage = "The POI 'name' is too long")]
         public string Name { get; set; }
+
+        [MaxLength(200, ErrorMessage = "The POI 'desc' is too long")]
+        public string Desc { get; set; }
     }
 }
