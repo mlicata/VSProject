@@ -1,3 +1,5 @@
 ﻿{
-
+  "connectionStrings": {
+    "cityInfoDBConnectionString": "Server=(localdb)\\mssqllocaldb;Database=CityInfoDB;Trusted_Connection=True;"
+  }
 }
