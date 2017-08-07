@@ -112,20 +112,13 @@ namespace CityInfo.API.Controllers
                     return BadRequest(ModelState);
                 }
 
-                CityDto city = new CityDto();
-                city = getCityDto(cityId);
-
-                if (city == null)
-                    return NotFound();
-
-                POIDto updatePoi = new POIDto();
-                updatePoi = getPOIDto(city, poiId);
+                var updatePOI = _cityInfoRepository.GetPOI(cityId, poiId);
 
                 if (poi == null)
                     return NotFound();
 
-                updatePoi.Name = poi.Name;
-                updatePoi.Desc = poi.Desc;
+                updatePOI.Name = poi.Name;
+                updatePOI.Desc = poi.Desc;
 
                 return NoContent();
             }
@@ -222,15 +215,24 @@ namespace CityInfo.API.Controllers
             }
         }
 
-        private CityDto getCityDto(int cityId)
+        private CityWithoutPOIsDto getCityDto(int cityId)
         {
-            CityDto tempDto = new CityDto();
-            tempDto = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
-            if (tempDto == null)
+            var cityEntities = _cityInfoRepository.GetCities();
+            var returnCity = new CityWithoutPOIsDto();
+            foreach (var cityEntity in cityEntities)
             {
-                _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.");
+                if (cityEntity.Id == id)
+                {
+                    returnCity = new CityWithoutPOIsDto
+                    {
+                        Id = cityEntity.Id,
+                        Desc = cityEntity.Desc,
+                        Name = cityEntity.Name
+                    };
+                    break;
+                }
             }
-            return tempDto;
+            return returnCity;
         }
 
         private POIDto getPOIDto(CityDto city, int poiId)
