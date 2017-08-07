@@ -42,5 +42,14 @@ namespace CityInfo.API
             return _context.POIs
                     .Where(p => p.cityId == cityId).ToList();
         }
+
+        public IEnumerable<POI> UpdatePOI(int cityId, int poiId, POI updatePoi)
+        {
+            POI basePoi = new POI();
+            basePoi = GetPOI(cityId, poiId);
+            _context.POIs.Update(basePoi);
+            _context.SaveChanges();
+            return basePoi;
+        }
     }
 }
